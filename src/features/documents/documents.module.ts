@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { DocumentsService } from './documents.service';
 import { DocumentsController } from './documents.controller';
-import { DocumentsAltService } from '../documents-alt/documents-alt.service';
+import { DocumentsAltModule } from '../documents-alt/documents-alt.module';
 
 @Module({
-  imports: [DocumentsAltService],
+  imports: [DocumentsAltModule],
   controllers: [DocumentsController],
-  providers: [DocumentsService],
+  providers: [DocumentsService,],
 })
 export class DocumentsModule {}
