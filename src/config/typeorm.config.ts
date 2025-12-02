@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CategoryEntity } from 'src/features/categories/entities/category.entity';
+
+import * as allEntities from '../features/all-entities';
 
 @Module({
   imports: [
@@ -15,19 +16,19 @@ import { CategoryEntity } from 'src/features/categories/entities/category.entity
         password: configService.getOrThrow<string>('POSTGRES_PASSWORD'),
         username: configService.getOrThrow<string>('POSTGRES_USER'),
         database: configService.getOrThrow<string>('POSTGRES_DB'),
-        // autoLoadEntities: false,
-        synchronize: false,
-
-        entities: [CategoryEntity],
-
         ssl: {
           rejectUnauthorized: false,
         },
-
-        // migrations: [__dirname + '/../migrations/*{.ts,.js}'],
-        // migrationsTableName: 'migrations',
-        // migrationsRun: configService.get<string>('NODE_ENV') !== 'production',
-        // migrationsRun: false,
+        entities: [...Object.values(allEntities)],
+        synchronize: false,
+        migrations: [
+          process.env.NODE_ENV === 'production'
+            ? 'dist/migrations/*.js'
+            : 'src/migrations/*.ts',
+        ],
+        migrationsTableName: 'typeorm_migrations',
+        migrationsRun: false,
+        // autoLoadEntities: false,
       }),
     }),
   ],

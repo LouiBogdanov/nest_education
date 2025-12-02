@@ -12,13 +12,18 @@ const dataSourceOptions: DataSourceOptions = {
   username: process.env.POSTGRES_USER,
   password: process.env.POSTGRES_PASSWORD,
   database: process.env.POSTGRES_DB,
+  ssl: {
+    rejectUnauthorized: false,
+  },
   entities: [...Object.values(allEntities)],
+  synchronize: false,
   migrations: [
     process.env.NODE_ENV === 'production'
       ? 'dist/migrations/*.js'
       : 'src/migrations/*.ts',
   ],
-  synchronize: false,
+  migrationsTableName: 'typeorm_migrations',
+  migrationsRun: false,
 };
 
 const dataSource = new DataSource(dataSourceOptions);
