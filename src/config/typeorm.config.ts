@@ -21,11 +21,12 @@ import * as allEntities from '../features/all-entities';
         },
         entities: [...Object.values(allEntities)],
         synchronize: false,
-        migrations: [
-          process.env.NODE_ENV === 'production'
-            ? 'dist/migrations/*.js'
-            : 'src/migrations/*.ts',
-        ],
+        migrations: ['dist/migrations/*.js'],
+        // migrations: [
+        //   process.env.NODE_ENV === 'production'
+        //     ? 'dist/migrations/*.js'
+        //     : 'src/migrations/*.ts',
+        // ],
         migrationsTableName: 'typeorm_migrations',
         migrationsRun: false,
         // autoLoadEntities: false,
