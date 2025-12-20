@@ -3,13 +3,13 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  OneToMany,
+  ManyToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity({ name: 'categories' })
-export class CategoryEntity {
+@Entity({ name: 'tags' })
+export class TagEntity {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
@@ -17,12 +17,9 @@ export class CategoryEntity {
   title: string;
 
   @Column({ type: 'text', nullable: true })
-  description?: string;
+  description?: string | null;
 
-  @Column({ name: 'is_active', type: 'boolean', default: true })
-  isActive: boolean;
-
-  @OneToMany(() => ProductEntity, (product) => product.category)
+  @ManyToMany(() => ProductEntity, (product) => product.tags)
   products: ProductEntity[];
 
   @CreateDateColumn({ name: 'create_at' })

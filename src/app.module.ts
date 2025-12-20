@@ -1,10 +1,15 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { DataSource } from 'typeorm';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmConfigModule } from './config/typeorm.config';
 import { CategoryModule } from './features/categories/category.module';
+import { ProductModule } from './features/product/product.module';
+import { ProfileModule } from './features/profile/profile.module';
+import { TagModule } from './features/tag/tag.module';
+import { UserModule } from './features/user/user.module';
 
 @Module({
   imports: [
@@ -47,8 +52,18 @@ import { CategoryModule } from './features/categories/category.module';
     TypeOrmConfigModule,
 
     CategoryModule,
+
+    // UserModule,
+
+    // ProfileModule,
+
+    // ProductModule,
+
+    // TagModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private dataSource: DataSource) {}
+}
