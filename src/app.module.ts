@@ -6,6 +6,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmConfigModule } from './config/typeorm.config';
 import { CategoryModule } from './features/categories/category.module';
+import { LifecycleModule } from './features/lifecycle/lifecycle.module';
 import { ProductModule } from './features/product/product.module';
 import { ProfileModule } from './features/profile/profile.module';
 import { TagModule } from './features/tag/tag.module';
@@ -52,6 +53,8 @@ import { UserModule } from './features/user/user.module';
     TypeOrmConfigModule,
 
     CategoryModule,
+
+    LifecycleModule,
 
     // UserModule,
 

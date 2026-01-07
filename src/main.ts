@@ -14,6 +14,13 @@ async function bootstrap() {
     }),
   );
 
+  // app.setGlobalPrefix('v1', {
+  //   exclude: [{ path: 'health', method: RequestMethod.GET }],
+  // });
+  // app.useGlobalGuards(new GlobalGuard());
+  // app.useGlobalFilters(new GlobalExceptionFilter());
+  // app.useGlobalInterceptors(new TransformInterceptor());
+
   await app.listen(process.env.PORT ?? 3000);
 }
 

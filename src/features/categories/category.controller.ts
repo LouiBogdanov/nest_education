@@ -1,5 +1,5 @@
-import { Body, Controller, Get, Logger, Param, Post } from '@nestjs/common';
-import { ExludeTitleValidationPipe } from 'src/shared/pipes/exlude-title.pipe';
+import { Body, Controller, Logger, Param, Post } from '@nestjs/common';
+import { ExludeTitleValidationPipe } from 'src/shared/pipes/exclude-title.pipe';
 
 import { CategoryService } from './category.service';
 import { AddCategoryDto } from './dto/add-category.dto';

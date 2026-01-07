@@ -3,9 +3,9 @@ export class AddProductDto {
   price: number;
   categoryId: number;
 
-  @IsOptional()
-  @IsArray()
-  @ArrayUnique()
-  @IsInt({ each: true })
+  // @IsOptional()
+  // @IsArray()
+  // @ArrayUnique()
+  // @IsInt({ each: true })
   tagIds?: number[];
 }
